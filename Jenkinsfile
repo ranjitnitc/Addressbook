@@ -1,20 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('build') {
+        stage('Run Test Suite') {
             steps {
-                echo 'building build step'
+                sh '''
+                    cd /home/apache-jmeter-5.3/bin
+                    sh jmeter.sh -Jjmeter.save.saveservice.output_format=xml -n -t /home/mytestresults.jmx -l /home/testresults.jtl
+                '''    
             }
         }
-        stage('test') {
-            steps {
-                echo 'building test step'
-            }
-        }
-        stage('deploy') {
-            steps {
-                echo 'building deploy step'
-            }
-        }
+       
     }
 }
