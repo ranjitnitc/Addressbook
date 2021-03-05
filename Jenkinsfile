@@ -9,6 +9,12 @@ pipeline {
                 '''    
             }
         }
+        
+        stage('Publish perfomance Results'){
+            steps{
+            perfReport filterRegex: '', sourceDataFiles: '/home/testresults.jtl'
+            }
+        }
        
     }
 }
