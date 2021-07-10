@@ -1,5 +1,5 @@
 @Library('sharedlib-demo') _
 
 regression {
-name= ranjit
+name = "ranjit Kumar"
 }
