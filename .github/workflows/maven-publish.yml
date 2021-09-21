@@ -27,8 +27,12 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+      
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: dist-without-markdown
+        path: |  
+          target    
 
-    - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+    
