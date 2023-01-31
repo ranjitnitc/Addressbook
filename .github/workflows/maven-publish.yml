@@ -34,5 +34,12 @@ jobs:
         name: dist-without-markdown
         path: |  
           target    
+     - name: Get Artifact Link
+       id: get_artifact_link
+       run: |
+         ARTIFACT_ID=$(curl -X GET \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+           "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts")
 
+         echo "Artifact ID: ${ARTIFACT_ID}"
     
