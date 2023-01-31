@@ -43,4 +43,12 @@ jobs:
            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts")
 
          echo "Artifact ID: ${ARTIFACT_ID}"
-    
+    - name: Get Artifact URL
+      id: get_artifact_url
+      run: |
+        ARTIFACT_RESPONSE=$(curl -X GET \
+        -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+         "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts")
+
+        ARTIFACT_URL=$(echo $ARTIFACT_RESPONSE | jq -r '.download_url')
+        echo "Artifact URL: ${ARTIFACT_URL}"
