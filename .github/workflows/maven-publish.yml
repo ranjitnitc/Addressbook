@@ -38,5 +38,5 @@ jobs:
    
     - name: Dump GitHub context
       env:
-        GITHUB_CONTEXT: ${{ toJSON(context.payload.artifacts) }}
+        GITHUB_CONTEXT: context.payload.artifacts
       run: echo "$GITHUB_CONTEXT"
