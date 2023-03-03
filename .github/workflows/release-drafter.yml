@@ -4,7 +4,7 @@ on:
   push:
     # branches to consider in the event; optional, defaults to all
     branches:
-      - dev
+      - master
   # pull_request event is required only for autolabeler
   pull_request:
     # Only following types are handled by the action, but one can default to all as well
@@ -32,6 +32,11 @@ jobs:
       #    echo "GHE_HOST=${GITHUB_SERVER_URL##https:\/\/}" >> $GITHUB_ENV
 
       # Drafts your next Release notes as Pull Requests are merged into "master"
+      - name: Extract branch name
+        id: branch_name
+        run: |
+          echo "branch = $(basename "${{ github.ref }}")" >> $GITHUB_OUTPUT
+          echo ${{ steps.branch_name.outputs.name }}
       - uses: release-drafter/release-drafter@v5
         # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
         # with:
@@ -39,3 +44,5 @@ jobs:
         #   disable-autolabeler: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          name: ${{ steps.branch_name.outputs.name }}-v$RESOLVED_VERSION
