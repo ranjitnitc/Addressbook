@@ -35,7 +35,8 @@ jobs:
       - name: Extract branch name
         id: branch_name
         run: |
-          echo "branch = $(basename "${{ github.ref }}")" >> $GITHUB_OUTPUT
+          #echo "branch = $(basename "${{ github.ref }}")" >> $GITHUB_OUTPUT
+          echo "branch = $(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
           echo "::set-output name=branch_name::$(basename "${{ github.ref }}")"
           echo ${{ steps.branch_name.outputs.branch }}
           echo ${{ steps.branch_name.outputs.branch_name }}
@@ -47,4 +48,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: ${{ steps.branch_name.outputs.branch_name }}v$RESOLVED_VERSION
+          name: ${{ steps.branch_name.outputs.branch }}-${{ steps.branch_name.outputs.branch_name }}v$RESOLVED_VERSION
