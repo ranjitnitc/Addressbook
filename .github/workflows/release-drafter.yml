@@ -47,4 +47,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: ${{ steps.branch_name.outputs.branch }} ${{ steps.branch_name.outputs.branch_name }}v$RESOLVED_VERSION
+          name: ${{ steps.branch_name.outputs.branch_name }}v$RESOLVED_VERSION
