@@ -36,7 +36,7 @@ jobs:
         id: branch_name
         run: |
           echo "branch = $(basename "${{ github.ref }}")" >> $GITHUB_OUTPUT
-          echo ${{ steps.branch_name.outputs.name }}
+          echo ${{ steps.branch_name.outputs.branch }}
       - uses: release-drafter/release-drafter@v5
         # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
         # with:
@@ -45,4 +45,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: ${{ steps.branch_name.outputs.name }} v$RESOLVED_VERSION
+          name: ${{ steps.branch_name.outputs.branch }} v$RESOLVED_VERSION
