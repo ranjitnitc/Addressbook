@@ -37,7 +37,7 @@ jobs:
         run: |
           #echo "branch = $(basename "${{ github.ref }}")" >> $GITHUB_OUTPUT
           echo "branch = $(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
-          branch1 = $(echo ${GITHUB_REF#refs/heads/})
+          $branch1 = $(echo ${GITHUB_REF#refs/heads/})
           echo "branch_new=$branch1" >> $GITHUB_OUTPUT
           echo "::set-output name=branch_name::$(basename "${{ github.ref }}")"
           echo ${{ steps.branch_name.outputs.branch }}
