@@ -1,0 +1,13 @@
+name: artifact URL
+on:
+  workflow_run:
+    workflows: ["Maven Package"]
+    types: 
+      - completed
+
+jobs:
+  job-one:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+           pwd
