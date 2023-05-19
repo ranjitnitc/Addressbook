@@ -4,11 +4,12 @@
 name: Maven Package
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches: master
+  workflow_dispatch:
+    inputs:
+     targetBranch:
+     description: 'Choose Branch to run on...'
+     required: true
+     default: 'master'
 
 jobs:
   build:
