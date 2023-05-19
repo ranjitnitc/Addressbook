@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
     inputs:
       targetBranch:
-      description: 'Choose Branch to run on...'
-      required: true
-      default: 'master'
+        description: 'Choose Branch to run on...'
+        required: true
+        default: 'master'
 
 jobs:
   build:
